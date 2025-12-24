@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: spur-chat-backend
+    env: node
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PORT
+        value: 3001
+      - key: FRONTEND_URL
+        sync: false
