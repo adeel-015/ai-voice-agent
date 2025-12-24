@@ -17,7 +17,7 @@ This guide provides step-by-step instructions for deploying the AI Chat Agent to
 ### 1.1 Initialize Git Repository (if not already done)
 
 ```bash
-cd /Users/adeeljaved/Documents/assignment/spur
+cd /Users/adeeljaved/Documents/assignment/
 git init
 ```
 
@@ -43,6 +43,7 @@ git push -u origin main
 ```
 
 If you're on master branch instead of main:
+
 ```bash
 git branch -M main
 git push -u origin main
@@ -57,8 +58,8 @@ git push -u origin main
 1. Go to https://dashboard.render.com
 2. Click **"New +"** → **"PostgreSQL"**
 3. Configure:
-   - **Name**: spur-chat-db
-   - **Database**: spur
+   - **Name**: chat-db
+   - **Database**: ai-chat-agent
    - **User**: (auto-generated)
    - **Region**: Choose closest to you
    - **Plan**: Free
@@ -71,7 +72,8 @@ git push -u origin main
 2. Click **"New +"** → **"Web Service"**
 3. Connect your GitHub repository
 4. Configure:
-   - **Name**: spur-chat-backend
+
+   - **Name**: chat-backend
    - **Region**: Same as database
    - **Branch**: main
    - **Root Directory**: `backend`
@@ -82,7 +84,7 @@ git push -u origin main
 
 5. **Add Environment Variables**:
    Click **"Advanced"** → **"Add Environment Variable"**
-   
+
    ```
    NODE_ENV = production
    DATABASE_URL = [Paste the Internal Database URL from Step 2.1]
@@ -95,7 +97,7 @@ git push -u origin main
 
 7. **Wait for deployment** (5-10 minutes)
 
-8. **Copy the backend URL** (e.g., `https://spur-chat-backend.onrender.com`)
+8. **Copy the backend URL** (e.g., `https://chat-backend.onrender.com`)
 
 ### 2.3 Run Database Migrations
 
@@ -117,10 +119,12 @@ Before deploying, update the API URL in your frontend code:
 2. Change the `API_BASE_URL` to your Render backend URL:
 
 ```typescript
-const API_BASE_URL = import.meta.env.VITE_API_URL || "https://spur-chat-backend.onrender.com";
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "https:/chat-backend.onrender.com";
 ```
 
 3. Commit and push:
+
 ```bash
 git add .
 git commit -m "Update API URL for production"
@@ -134,6 +138,7 @@ git push
 3. Choose **"Deploy with GitHub"**
 4. Select your repository
 5. Configure:
+
    - **Base directory**: `frontend`
    - **Build command**: `npm run build`
    - **Publish directory**: `build`
@@ -141,16 +146,16 @@ git push
 
 6. **Add Environment Variables**:
    Click **"Site settings"** → **"Environment variables"** → **"Add a variable"**
-   
+
    ```
-   VITE_API_URL = [Your Render backend URL, e.g., https://spur-chat-backend.onrender.com]
+   VITE_API_URL = [Your Render backend URL, e.g., https://chat-backend.onrender.com]
    ```
 
 7. Click **"Deploy site"**
 
 8. **Wait for deployment** (2-5 minutes)
 
-9. **Copy the frontend URL** (e.g., `https://spur-chat.netlify.app`)
+9. **Copy the frontend URL** (e.g., `https://chat.netlify.app`)
 
 ---
 
@@ -176,12 +181,13 @@ Now update the backend CORS to allow your frontend domain:
 ### 5.1 Test Backend
 
 ```bash
-curl https://spur-chat-backend.onrender.com/health
+curl https://chat-backend.onrender.com/health
 ```
 
 Should return:
+
 ```json
-{"status":"ok","timestamp":"..."}
+{ "status": "ok", "timestamp": "..." }
 ```
 
 ### 5.2 Test Frontend
@@ -255,6 +261,7 @@ git push
 ## Environment Variables Summary
 
 ### Backend (Render)
+
 ```env
 NODE_ENV=production
 DATABASE_URL=postgresql://...
@@ -264,8 +271,9 @@ FRONTEND_URL=https://your-app.netlify.app
 ```
 
 ### Frontend (Netlify)
+
 ```env
-VITE_API_URL=https://spur-chat-backend.onrender.com
+VITE_API_URL=https://chat-backend.onrender.com
 ```
 
 ---
@@ -273,6 +281,7 @@ VITE_API_URL=https://spur-chat-backend.onrender.com
 ## Support
 
 For issues:
+
 - Render Docs: https://render.com/docs
 - Netlify Docs: https://docs.netlify.com
 - GitHub Issues: Create an issue in your repository

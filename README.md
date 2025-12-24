@@ -151,7 +151,7 @@ A modern, full-stack AI-powered chat application with a floating widget interfac
 ## 📁 Project Structure
 
 ```
-spur/
+ai-chat-agent/
 ├── backend/                 # Express + Prisma backend
 │   ├── src/
 │   │   ├── config/         # Configuration files

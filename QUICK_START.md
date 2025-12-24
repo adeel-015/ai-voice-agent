@@ -146,7 +146,7 @@ PORT=3002
 ### File Locations
 
 ```
-/Users/adeeljaved/Documents/assignment/spur/
+/Users/adeeljaved/Documents/assignment/
 ├── backend/.env              ← Configure this!
 ├── frontend/.env             ← Already configured
 ├── setup.sh                  ← Automated setup

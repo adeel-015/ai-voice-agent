@@ -33,7 +33,7 @@ I've successfully created a **full-stack AI chat application** with the followin
 ## 📂 Project Structure
 
 ```
-/Users/adeeljaved/Documents/assignment/spur/
+/Users/adeeljaved/Documents/assignment/
 ├── backend/
 │   ├── src/
 │   │   ├── config/

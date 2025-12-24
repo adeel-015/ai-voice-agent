@@ -9,11 +9,11 @@ Use this as a quick reference when deploying. For detailed instructions, see [DE
 ```bash
 # If you haven't created a GitHub repo yet:
 # 1. Go to https://github.com/new
-# 2. Create a new repository (e.g., "spur-ai-chat")
+# 2. Create a new repository (e.g., "ai-chat")
 # 3. Copy the repository URL
 
 # Add remote and push
-cd /Users/adeeljaved/Documents/assignment/spur
+cd /Users/adeeljaved/Documents/assignment/
 git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
 git branch -M main
 git push -u origin main
@@ -28,8 +28,8 @@ git push -u origin main
 1. Go to: https://dashboard.render.com
 2. Click: **"New +"** → **"PostgreSQL"**
 3. Fill in:
-   - Name: `spur-chat-db`
-   - Database: `spur`
+   - Name: `chat-db`
+   - Database: `ai-chat-agent`
    - Region: Select closest
    - Plan: **Free**
 4. Click: **"Create Database"**
@@ -46,7 +46,8 @@ git push -u origin main
 3. Click: **"Connect a repository"** (authorize GitHub if needed)
 4. Select your repository
 5. Fill in:
-   - **Name**: `spur-chat-backend`
+
+   - **Name**: `chat-backend`
    - **Region**: Same as database
    - **Branch**: `main`
    - **Root Directory**: `backend`
@@ -67,7 +68,7 @@ PORT = 3001
 
 8. Click: **"Create Web Service"**
 9. Wait for "Live" status (5-10 minutes)
-10. **IMPORTANT**: Copy your backend URL (e.g., `https://spur-chat-backend.onrender.com`)
+10. **IMPORTANT**: Copy your backend URL (e.g., `https://chat-backend.onrender.com`)
 
 **✓ Verify**: Visit `https://YOUR-BACKEND.onrender.com/health` - should return `{"status":"ok"}`
 
@@ -96,6 +97,7 @@ npx prisma db push
 3. Click: **"Deploy with GitHub"**
 4. Select your repository
 5. Fill in:
+
    - **Base directory**: `frontend`
    - **Build command**: `npm run build`
    - **Publish directory**: `build`
@@ -107,11 +109,11 @@ npx prisma db push
 PUBLIC_API_URL = [Your Render backend URL from Step 3]
 ```
 
-Example: `PUBLIC_API_URL = https://spur-chat-backend.onrender.com`
+Example: `PUBLIC_API_URL = https://chat-backend.onrender.com`
 
 8. Click: **"Deploy"**
 9. Wait for deployment (2-5 minutes)
-10. **IMPORTANT**: Copy your Netlify URL (e.g., `https://spur-chat.netlify.app`)
+10. **IMPORTANT**: Copy your Netlify URL (e.g., `https://chat.netlify.app`)
 
 **✓ Verify**: Visit your Netlify URL - page should load
 
@@ -129,7 +131,7 @@ Example: `PUBLIC_API_URL = https://spur-chat-backend.onrender.com`
 FRONTEND_URL = [Your Netlify URL from Step 5]
 ```
 
-Example: `FRONTEND_URL = https://spur-chat.netlify.app`
+Example: `FRONTEND_URL = https://chat.netlify.app`
 
 6. Click **"Save Changes"**
 7. Wait for auto-redeploy (~2 minutes)
@@ -166,16 +168,19 @@ Both Render and Netlify will automatically redeploy from GitHub.
 ## 🚨 Troubleshooting
 
 ### Issue: "Failed to process message"
+
 - Check Render logs: Dashboard → Service → Logs tab
 - Verify GEMINI_API_KEY is correct
 - Ensure database is running
 
 ### Issue: CORS error in browser
+
 - Verify FRONTEND_URL matches Netlify URL exactly
 - No trailing slash in URL
 - Include https://
 
 ### Issue: 500 error on backend
+
 - Check DATABASE_URL is correct (use Internal URL)
 - Run `npx prisma db push` in Render shell
 - Check logs for specific error
@@ -196,6 +201,7 @@ After deployment, you should have:
 ## 💰 Cost
 
 Everything is **FREE**:
+
 - GitHub: Free unlimited public repos
 - Render: Free tier (spins down after 15 min inactivity)
 - Netlify: Free tier (100GB bandwidth/month)
@@ -206,6 +212,7 @@ Everything is **FREE**:
 ## 📞 Support
 
 If stuck, check:
+
 1. [DEPLOYMENT.md](DEPLOYMENT.md) - Detailed guide
 2. [TROUBLESHOOTING.md](TROUBLESHOOTING.md) - Common issues
 3. Render docs: https://render.com/docs
