@@ -6,6 +6,10 @@ const config = {
   preprocess: vitePreprocess(),
   kit: {
     adapter: adapter(),
+    env: {
+      dir: process.cwd(),
+      publicPrefix: "PUBLIC_",
+    },
   },
 };
 
